@@ -1,0 +1,240 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Checklist</title>
+    <link rel="icon" href="ann/logo3.jpeg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 20px;
+            font-family: 'Georgia', serif; 
+            font-size: 4rem; 
+            color: #73a5e7; 
+            text-align: center; 
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr); 
+            grid-gap: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .grid-item {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; 
+            background-color: #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .grid-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: blur(1px);
+        }
+
+        .grid-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: rgb(245, 245, 245);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        .grid-item input {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transform: scale(1.5);
+            z-index: 2;
+        }
+
+        .footer {
+            margin: 20px 0;
+            font-family: 'Georgia', serif; 
+            font-size: 1rem; 
+            color: #131414; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>100 Things We Will Do Together</h1>
+    <div class="grid-container">
+    </div>
+    <div class="footer">
+        <button onclick="resetChecklist()">Restart</button>
+    </div>
+    <script>
+        const activities = [
+        { title: "Visit Yuguang Island", img: "ann/Yuguang Island.jpg" },
+        { title: "Go Camping", img: "ann/Camping.jpg" },
+        { title: "Visit amusement park", img: "ann/amusement park.jpg" },
+        { title: "Celebrate New Year", img: "ann/new year.jpg" },
+        { title: "Go Snorkeling", img: "ann/Snorkeling.jpeg" },
+        { title: "Ride ferris wheel", img: "ann/Ferris wheel.jpg" },
+        { title: "Cook", img: "ann/cook.jpg" },
+        { title: "Have pets", img: "ann/pets.jpeg" },
+        { title: "Get balck out", img: "ann/black out.jpeg" },
+        { title: "Watch firework", img: "ann/firework.jpeg" },
+        { title: "Watch snow", img: "ann/snow.jpeg" },
+        { title: "Go to a concert", img: "ann/concert.jpg" },
+        { title: "Release sky lantern", img: "ann/lantern.jpeg" },
+        { title: "Watch midnight movie", img: "ann/midnight movie.jpeg" },
+        { title: "Massage", img: "ann/massage.jpeg" },
+        { title: "Use facial mask", img: "ann/facial mask.jpeg" },
+        { title: "Move in together", img: "ann/move in.jpg" },
+        { title: "Netflix and chill", img: "ann/netflix and chill.jpeg" },
+        { title: "Stay up all night", img: "ann/stay up.png" },
+        { title: "Visit museum", img: "ann/museum.jpeg" },
+        { title: "Get wet in the rain", img: "ann/get wet in the rain.jpeg" },
+        { title: "Swim", img: "ann/swim.jpeg" },
+        { title: "Play video games", img: "ann/video games.jpg" },
+        { title: "Enjoy hot spring", img: "ann/hot spring.jpg" },
+        { title: "Visit Tamsui", img: "ann/Tamsui.jpg" },
+        { title: "Visit Jiufen", img: "ann/Jiufen.jpg" },
+        { title: "Work out", img: "ann/work out.jpg" },
+        { title: "Paint each other", img: "ann/paint.jpeg" },
+        { title: "Play puzzle", img: "ann/puzzle.jpeg" },
+        { title: "Watch sunrise", img: "ann/sunrise.jpg" },
+        { title: "Buy the lottery", img: "ann/lottery.jpeg" },
+        { title: "Co-create a playlist", img: "ann/playlist.jpeg" },
+        { title: "Watch a new show", img: "ann/tv show.jpeg" },
+        { title: "Create a photo book", img: "ann/photo book.jpg" },
+        { title: "Grow plants", img: "ann/plants.jpg" },
+        { title: "Graduate", img: "ann/graduation.jpeg" },
+        { title: "Halloween dress up", img: "ann/halloween.jpeg" },
+        { title: "Read books", img: "ann/book.jpeg" },
+        { title: "Take a boat", img: "ann/boat.jpeg" },
+        { title: "Watch sport game", img: "ann/sport game.jpeg" },
+        { title: "Do nothing all day", img: "ann/nothing.jpeg" },
+        { title: "Watch shooting stars", img: "ann/shooting star.jpeg" },
+        { title: "Ski", img: "ann/ski.jpeg" },
+        { title: "Pillow fight", img: "ann/pillow fight.jpeg" },
+        { title: "Bake cookies", img: "ann/cookies.jpg" },
+        { title: "Watch sunset", img: "ann/sunset.jpeg" },
+        { title: "Dance", img: "ann/dance.jpeg" },
+        { title: "Take a road trip", img: "ann/road trip.jpg" },
+        { title: "Have bubble bath", img: "ann/bath.jpeg" },
+        { title: "Ice skating", img: "ann/ice skating.jpeg" },
+        { title: "Marathon", img: "ann/marathon.jpeg" },
+        { title: "Cycling", img: "ann/cycling.jpeg" },
+        { title: "Hug", img: "ann/hug.jpeg" },
+        { title: "Have candle dinner", img: "ann/candle dinner.jpeg" },
+        { title: "Watch night view", img: "ann/night view.jpg" },
+        { title: "Travel abroad", img: "ann/travel abroad.jpeg" },
+        { title: "Wear a kimono", img: "ann/kimono.jpeg" },
+        { title: "Put on make up for each other", img: "ann/make up.jpeg" },
+        { title: "Shooting a Vlog", img: "ann/vlog.jpg" },
+        { title: "Wash car", img: "ann/wash car.jpeg" },
+        { title: "Play board games", img: "ann/board game.jpg" },
+        { title: "Visit art gallery", img: "ann/art gallery.jpg" },
+        { title: "See hot air ballon", img: "ann/hot air ballon.jpg" },
+        { title: "Visit Disney", img: "ann/disney.jpg" },
+        { title: "Visit Universal", img: "ann/universal.jpg" },
+        { title: "Picnic at the beach", img: "ann/picnic at the beach.jpg" },
+        { title: "Take a plane", img: "ann/take a plane.jpg" },
+        { title: "Play guitar", img: "ann/play guitar.jpg" },
+        { title: "DIY", img: "ann/diy.jpeg" },
+        { title: "Watch scary movie", img: "ann/scary movie.jpg" },
+        { title: "Play trampoline", img: "ann/trampoline.jpg" },
+        { title: "View cherry blossom", img: "ann/cherry blossom.jpeg" },
+        { title: "Plan a trip", img: "ann/plan a trip.jpeg" },
+        { title: "Go bowling", img: "ann/bowling.jpg" },
+        { title: "Take HSR", img: "ann/HSR.jpg" },
+        { title: "Play drum", img: "ann/drum.jpeg" },
+        { title: "Play switch", img: "ann/switch.jpeg" },
+        { title: "Write love letters", img: "ann/love letter.jpg" },
+        { title: "Save up", img: "ann/save up.jpeg" },
+        { title: "Create a time capsule", img: "ann/time capsule.jpeg" },
+        { title: "Go stargazing", img: "ann/Go stargazing.jpg" },
+        { title: "Play a sport", img: "ann/sport.jpeg" },
+        { title: "See a comedy", img: "ann/comedy.jpeg" },
+        { title: "Kiss for a minute", img: "ann/kiss.jpeg" },
+        { title: "Pick each other up after work", img: "ann/pick up sb.jpg" },
+        { title: "Feed stray animals", img: "ann/feed stray.jpeg" },
+        { title: "Take in the northen light", img: "ann/northen light.jpeg" },
+        { title: "Travel to Europe", img: "ann/europe.jpeg" },
+        { title: "See quokka", img: "ann/quokka.jpeg" },
+        { title: "Climb the mountain", img: "ann/climb mountain.jpg" },
+        { title: "Walk in the forest", img: "ann/walk in the forest.jpeg" },
+        { title: "Double date", img: "ann/double date.jpeg" },
+        { title: "Watch opera", img: "ann/watch opera.jpeg" },
+        { title: "Visit each other's hometown", img: "ann/hometown.jpeg" },
+        { title: "Pick fruits", img: "ann/pick fruits.jpeg" },
+        { title: "Have sex", img: "ann/sex.jpg" },
+        { title: "See each other's family", img: "ann/family.jpeg" },
+        { title: "Propose", img: "ann/proposal.jpg" },
+        { title: "Get engaged", img: "ann/engaged.jpeg" },
+        { title: "Get married", img: "ann/married.jpeg" },
+        ];
+        const gridContainer = document.querySelector('.grid-container');
+        activities.forEach((activity, index) => {
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+            gridItem.innerHTML = `
+                <img src="${activity.img}" alt="${activity.title}">
+                <div class="overlay">${activity.title}</div>
+                <input type="checkbox" data-index="${index}">
+            `;
+            gridContainer.appendChild(gridItem);
+        });
+        const loadProgress = () => {
+            activities.forEach((_, index) => {
+                const checkbox = document.querySelector(`input[data-index="${index}"]`);
+                const isChecked = localStorage.getItem(`activity-${index}`) === 'true';
+                checkbox.checked = isChecked;
+            });
+        };
+        const saveProgress = (index, isChecked) => {
+            localStorage.setItem(`activity-${index}`, isChecked);
+        };
+        gridContainer.addEventListener('change', (e) => {
+            if (e.target.type === 'checkbox') {
+                const index = e.target.getAttribute('data-index');
+                saveProgress(index, e.target.checked);
+            }
+        });
+        const resetChecklist = () => {
+            if (confirm("Are you sure you want to reset the checklist?")) {
+                activities.forEach((_, index) => {
+                    localStorage.removeItem(`activity-${index}`);
+                });
+                loadProgress();
+            }
+        };
+        loadProgress();
+    </script>
+</body>
+</html>
