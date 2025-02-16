@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postcard for You</title>
+    <link rel="icon" href="ann/logo.png" type="image/png">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #b7dee7;
+            margin: 0;
+        }
+        .postcard {
+            width: 1000px;
+            height: 500px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .postcard.flipped .card {
+            transform: rotateY(180deg);
+        }
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .front {
+            background: url('ann/postcard.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            filter: blur(2px);
+        }
+        .back {
+            background: url('ann/paper-texture.jpg') center/cover, #f5f5e4;
+            transform: rotateY(180deg);
+            display: flex; 
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: #333;
+        }
+        .stamp {
+            width: 70px;
+            height: 70px;
+            background: url('ann/stamp.jpg') center/cover;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .back p {
+            text-align: justify;
+            text-indent: 2em; 
+            margin: 10px 0; 
+            padding: 0;
+            line-height: 1.6; 
+        }
+        .back p:first-child {
+            font-weight: bold;
+            margin-bottom: 5px; 
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="postcard" onclick="this.classList.toggle('flipped')">
+        <div class="card">
+            <div class="front"></div>
+            <div class="back">
+                <p>Dear Jenna,</p>
+                <p>Hi baby, today is your birthday and our first anniversary. I was about to talk about how I made this website but let's just focus on the birthday thing. HEHE. It's been a year since we have dated. I'm so glad and fortunate enough to meet such a wonderful person and dated her. In this special day, I just want to show my appreciation and tell you how much I love you. I am so happy that we can be together. And thank you for always be there no matter good or bad. It always warms me whenever you comforts me when I am down. It feels like that seeing you would be the solution to everything. It gives me courage to continue what I am doing, knowing that there's always a person behind supporting me.</p>
+                <p>I would also like to say how much I love you. When I think about you all the time, the only things that would come to my mind is how to make you ever happier now and in the future. I want to try my best to make you the happiest person in the world and that we could live happily together. I love you so much baby. Now that I have you fill in every corner in my life and I feel so thankful for that and would never want to lose it. That's just how much I love spending time with you and how much I truly love you. I love you baby, and wish you a very happy birthday. And hopefully I can be there with you for the rest of the birthday in your life.</p>
+                <p>Love, Danny</p>
+                <div class="stamp"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
